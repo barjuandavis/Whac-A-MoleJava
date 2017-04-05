@@ -1,0 +1,12 @@
+Parent (abstract) : Mole.class
+
+Children :
+
+BasicMole.class (default mole)
+ToxicMole.class (if killed, player will lose 1 life)
+TankMole.class (requires 3 hit to be killed)
+HealerMole.class (heals 1 life for player when killed)
+BossMole.class (has his own healthbar, and deals damage to player over a period of time)
+MimicMole.class (same as BasicMole, but half of it's lifetime, this mole's appearance will mimic ToxicMole)
+ 
+
