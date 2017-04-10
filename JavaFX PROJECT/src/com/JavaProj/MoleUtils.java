@@ -15,11 +15,11 @@ public class MoleUtils {
 	
 	public static int moleDiversity(int wave) {
 		final int low = 1;
-		int hi = 2;
+		int hi = 3;
 		if (wave > 10) {
 			hi = 4;
 		}
-		return (int) (low+Math.random()*hi);
+		return (int) (Math.random() * (hi - low)) + low;
 	}
 	
 	public static int maxMoleSpawn(int wave) {

@@ -15,14 +15,19 @@
    <children>
       <AnchorPane prefHeight="0.0" prefWidth="600.0">
          <children>
-            <Label fx:id="lifeLabel" layoutX="14.0" layoutY="1.0" text="Life = ">
+            <Label fx:id="lifeLabel" layoutX="14.0" prefHeight="44.0" prefWidth="177.0" text="Life = " textFill="WHITE">
                <font>
-                  <Font name="Open Sans Bold" size="28.0" />
+                  <Font name="Open Sans Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="scoreLabel" layoutX="343.0" prefHeight="42.0" prefWidth="250.0" text="Score =" AnchorPane.bottomAnchor="0.0">
+            <Label fx:id="scoreLabel" layoutX="421.0" layoutY="2.0" prefHeight="38.0" prefWidth="205.0" text="Score =" textFill="WHITE" AnchorPane.bottomAnchor="4.0">
                <font>
-                  <Font name="Open Sans Bold" size="28.0" />
+                  <Font name="Open Sans Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="moleLabel" layoutX="202.0" prefHeight="44.0" prefWidth="205.0" text="Mole = " textFill="WHITE">
+               <font>
+                  <Font name="Open Sans Bold" size="20.0" />
                </font>
             </Label>
          </children>
@@ -41,7 +46,7 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ProgressBar fx:id="healthBar1" prefHeight="21.0" prefWidth="148.0" progress="0.0">
+                  <ProgressBar fx:id="healthBar1" prefHeight="21.0" prefWidth="148.0" progress="0.0" style="-fx-background-image: null;">
                      <padding>
                         <Insets left="53.0" />
                      </padding>
@@ -167,5 +172,10 @@
             </VBox>
          </children>
       </GridPane>
+      <Label fx:id="waveLabel" prefHeight="33.0" prefWidth="105.0" text="Wave 0" textFill="WHITE">
+         <font>
+            <Font name="Open Sans Semibold" size="17.0" />
+         </font>
+      </Label>
    </children>
 </fx:root>

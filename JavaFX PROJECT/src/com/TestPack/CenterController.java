@@ -1,24 +1,32 @@
 package com.TestPack;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 
-public class CenterController extends SplitPane implements Initializable {
-		@FXML
-		Button sebuahButton;
+
+public class CenterController extends SplitPane {
+		@FXML Button sebuahButton;
 		
-		 FXMLLoader fxmlLoader;
+		Button[] button = new Button[10];
+		//button[1] = new Button();
+		private IntegerProperty scoreProp = new SimpleIntegerProperty(this, "score",0);
+		
+		@FXML Label sebuahLabel;
+		
+		FXMLLoader fxmlLoader;
+		
 		public CenterController() {
 		  fxmlLoader = new FXMLLoader(getClass().getResource("centerLayout2.fxml"));
 		    fxmlLoader.setRoot(this);
@@ -28,27 +36,30 @@ public class CenterController extends SplitPane implements Initializable {
 		    } catch (IOException exception) {
 		        throw new RuntimeException(exception);
 		    }
-		}
-
-		@Override
-		public void initialize(URL arg0, ResourceBundle arg1) {
-			
-			
+		    button[1] = sebuahButton;
+		    
 		}
 		
 		public void handle(ActionEvent e) {
-			if (e.getSource() == sebuahButton) {
-				fxmlLoader = new FXMLLoader(getClass().getResource("centerLayout.fxml"));
-				AnotherController x = new AnotherController();
-				fxmlLoader.setRoot(x);
-				fxmlLoader.setController(x);
-				try {
-					fxmlLoader.load();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+			if (e.getSource() == button[1]) {
+				setScore(getScore()+1);
+				int x = getScore();
+				System.out.println("Button ID : 1" );
+				sebuahLabel.setText("Score " + x);
 				}
-			}
+		}
+
+		public IntegerProperty getScoreProp() {
+			return scoreProp;
+		}
+
+		public void setScore(int x) {
+			this.scoreProp.set(x);
+		}
+		
+		public int getScore() {
+			return this.scoreProp.get();
+			
 		}
 		
 	}

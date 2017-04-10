@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" type="VBox" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="0.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="lifeLabel" layoutX="14.0" prefHeight="44.0" prefWidth="177.0" text="Life = ">
+               <font>
+                  <Font name="Open Sans Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="scoreLabel" layoutX="421.0" layoutY="2.0" prefHeight="38.0" prefWidth="205.0" text="Score =" AnchorPane.bottomAnchor="4.0">
+               <font>
+                  <Font name="Open Sans Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="moleLabel" layoutX="202.0" prefHeight="44.0" prefWidth="205.0" text="Mole = ">
+               <font>
+                  <Font name="Open Sans Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ProgressBar fx:id="healthBar" prefHeight="19.0" prefWidth="640.0" progress="0.0">
+         <padding>
+            <Insets left="50.0" right="50.0" />
+         </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </ProgressBar>
+      <ProgressBar fx:id="timeBar" prefHeight="16.0" prefWidth="545.0" progress="0.0">
+         <padding>
+            <Insets left="150.0" right="50.0" />
+         </padding>
+      </ProgressBar>
+      <ImageView fx:id="bossHole" fitHeight="368.0" fitWidth="552.0" pickOnBounds="true" preserveRatio="true">
+         <VBox.margin>
+            <Insets left="45.0" />
+         </VBox.margin>
+      </ImageView>
+      <Label fx:id="waveLabel" prefHeight="33.0" prefWidth="105.0" text="Wave 0">
+         <font>
+            <Font name="Open Sans Semibold" size="17.0" />
+         </font>
+      </Label>
+   </children>
+</fx:root>

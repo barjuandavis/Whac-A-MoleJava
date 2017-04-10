@@ -18,19 +18,34 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class TestClass extends Application {
 
 	Scene mainScene;
-	@FXML
 	
+	AnotherController x;
 	
 	@Override
 	public void start(Stage stage) throws Exception {
 		CenterController a = new CenterController();
 		mainScene = new Scene(a,600,400);
+		Scene anotherScene;
+		VBox change = new VBox();
+		Label aLabel = new Label("GAME OVER :(");
+		aLabel.setFont(Font.font("Calibri", 40));
+		change.getChildren().add(aLabel);
+		anotherScene= new Scene(change,600,400);
+		
+		a.getScoreProp().addListener(e -> {
+			if (a.getScore() % 10 == 0) {
+				System.out.println("WULULULULULU");
+				stage.setScene(anotherScene);
+			}
+			
+		});
 		stage.setScene(mainScene);
 		stage.show();
 	}

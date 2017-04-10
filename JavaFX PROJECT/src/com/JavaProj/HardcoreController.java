@@ -2,6 +2,7 @@ package com.JavaProj;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -14,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 
-public class GameController extends VBox {
+public class HardcoreController extends VBox {
 	
 	@FXML private ImageView target1;
 	@FXML private ImageView target2;
@@ -40,9 +41,8 @@ public class GameController extends VBox {
 	@FXML private ProgressBar healthBar9;
 	ImageView[] target = new ImageView[10];
 	ProgressBar[] healthBar = new ProgressBar[10];
-	Hole[] hole = new Hole[10];
 	private long score;
-	private Mole mole;
+	Mole[] mole = new Mole[10];
 	//private int life;
 	private IntegerProperty life = new SimpleIntegerProperty(this, "life");
 	private int wave;
@@ -55,12 +55,13 @@ public class GameController extends VBox {
 	 * 4 = ToxicMole
 	 * 
 	 * 
+	 * NOTE BUAT YEFTA : INI MOLE ID BISA DIGANTI KOK :)
 	 * 
 	 */
 	private boolean[] activeHole = new boolean[10];
 	
 	
-	public GameController(int life, long score, int wave) {
+	public HardcoreController(int life, long score, int wave) {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("centerLayout.fxml"));
 	    fxmlLoader.setRoot(this);
 	    fxmlLoader.setController(this);
@@ -69,7 +70,6 @@ public class GameController extends VBox {
 	    } catch (IOException exception) {
 	        throw new RuntimeException(exception);
 	    }
-	   setStyle(getStyle() + " -fx-background-image: url(file:///D:/Java_workspace/JavaFX%20PROJECT/src/com/JavaProj/BG.jpg) ");
 	    setLife(life);
 	    setScore(score);
 	    setWave(wave);
@@ -89,7 +89,7 @@ public class GameController extends VBox {
 	public long getScore() {return this.score;}
 	public void setScore(long x) {this.score = x;}
 	public int getWave() {return this.wave;}
-	public void setWave(int wave) {this.wave = wave;waveLabel.setText("Wave " + getWave());}
+	public void setWave(int wave) {this.wave = wave;}
 	public int getMolePerWave() {return molePerWave.get();}
 	public void setMolePerWave(int molePerWave) {this.molePerWave.set(molePerWave);}
 	public IntegerProperty getMolePerWaveProperty() {return this.molePerWave;}
@@ -98,6 +98,7 @@ public class GameController extends VBox {
 	public IntegerProperty getLifeProperty() {return this.life;}
 	
 	public void randomizeMole() {
+		
 		int choose = MoleUtils.moleDiversity(wave);
 		
 		//System.out.println(choose);
