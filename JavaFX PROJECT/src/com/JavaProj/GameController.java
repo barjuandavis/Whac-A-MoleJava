@@ -19,7 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 
-public class GameController extends VBox {
+public class GameController extends VBox  {
 	
 	@FXML private ImageView target1;
 	@FXML private ImageView target2;
@@ -90,10 +90,16 @@ public class GameController extends VBox {
 		waveLabel.setText("Wave " + getWave());
 		target[1] = target1;target[2] = target2;target[3] = target3;target[4] = target4;target[5] = target5;target[6] = target6;target[7] = target7; target[8] = target8;target[9] = target9;
 		healthBar[1] = healthBar1; healthBar[2] = healthBar2; healthBar[3] = healthBar3; healthBar[4] = healthBar4; healthBar[5] = healthBar5; healthBar[6] = healthBar6; healthBar[7] = healthBar7;healthBar[8] = healthBar8;healthBar[9] = healthBar9;
-		randomizeMole();
-		int targetHole = MoleUtils.randomizeHole();
 		clearHole();
-		setMoleInHole(targetHole);
+		 try {
+			mole = new BasicMole(getClass().getResourceAsStream("BasicMole.png"),getWave());
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+		//	e.printStackTrace();
+		}
+		setMoleInHole();
+		waitDelay.restart();
+		
 	}
 	
 	public long getScore() {return this.score;}
@@ -114,9 +120,9 @@ public class GameController extends VBox {
 		try {
 		switch(choose) {
 		case 1: mole = new BasicMole(getClass().getResourceAsStream("BasicMole.png"),getWave()); break;
-		case 2: mole = new TankMole(getClass().getResourceAsStream("TankMole.png")); break;
-		case 3: mole = new HealerMole(getClass().getResourceAsStream("HealerMole.png"));break;
-		case 4: mole = new ToxicMole(getClass().getResourceAsStream("ToxicMole.png"));break;
+		case 2: mole = new TankMole(getClass().getResourceAsStream("TankMole.png"),getWave()); break;
+		case 3: mole = new HealerMole(getClass().getResourceAsStream("HealerMole.png"),getWave());break;
+		case 4: mole = new ToxicMole(getClass().getResourceAsStream("ToxicMole.png"),getWave());break;
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("Not found : " + mole.isError());
@@ -125,7 +131,13 @@ public class GameController extends VBox {
 	}
 	
 	public void behaveBad(int x) { //when NOT HIT
-		if(mole.getMoleID() != 3) setLife(getLife()-1);
+		if(mole.getMoleID() != 4) setLife(getLife()-1);
+		else {
+			setScore(getScore()+mole.getBounty());
+			scoreLabel.setText("Score = " + getScore());
+			setMolePerWave(getMolePerWave()-1);
+			moleLabel.setText("Mole = " + getMolePerWave());
+		}
 		lifeLabel.setText("Life = "+getLife());
 		
 	}
@@ -133,7 +145,7 @@ public class GameController extends VBox {
 	public void behaveGood() { //when HIT
 		mole.setLife(mole.getLife()-1);
 		if (mole.isDead()) {
-		score += mole.getBounty();
+		setScore(getScore()+mole.getBounty());
 		switch(mole.getMoleID()) {
 			case 1: 
 			//	System.out.println("Current mole is a BasicMole.");
@@ -178,31 +190,22 @@ public class GameController extends VBox {
 					@Override
 					protected Void call() {
 						try {
-						//System.out.println("called?");
-						//System.out.println("waiting for " + mole.getLifeTime());
 						FadeTransition fade = new FadeTransition(Duration.millis(200),target[x]);
 						fade.setFromValue(1);
 						fade.setToValue(0);
 						Thread.sleep(mole.getLifeTime());
 						aThread.start();
-						if (isCancelled()){
-							//System.out.println("Cancel setelah thread.");
-						}
 						fade.play();
 						clearHole(x);
-						//System.out.println("Mole " + getMolePerWave());
 						setMoleInHole((x+1)%9+1);
-						//Platform.
 						Platform.runLater(new Runnable() {
 							@Override public void run()  {
-								//System.out.println("doing behaveBad(x)");
 								behaveBad(x);
 		                     }
 						});
-						//Thread.sleep(1000);
 						} catch (Exception e) {
-						//	System.out.println(e);
-							//System.out.println("Cancelled!");
+							System.out.println(e);
+							//do nothing
 						}		
 						return null;
 					}				
@@ -264,5 +267,6 @@ public class GameController extends VBox {
 			}
 		}
 	}
+
 	
 }

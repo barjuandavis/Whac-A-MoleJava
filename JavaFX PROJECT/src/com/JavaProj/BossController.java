@@ -45,16 +45,17 @@ public class BossController extends AnchorPane {
 	protected void setBossDead(boolean x) {this.isBossDead.set(x);}
 	public IntegerProperty getLifeProperty() {return this.life;}
 	
-	public BossController(int wave, long score,int life){
+	public BossController(int life, long score,int wave){
 		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("bossLayout.fxml"));
 		    fxmlLoader.setRoot(this);
 		    fxmlLoader.setController(this);
 		    try {
 		        fxmlLoader.load();
-		        System.out.println("fxml loaded!");
+		      //  System.out.println("fxml loaded!");
 		    } catch (IOException exception) {
 		        throw new RuntimeException(exception);
 		    }
+	//	System.out.println(wave);
 		setBoss(wave);
 		setWave(wave);
 		setScore(score);
@@ -69,16 +70,16 @@ public class BossController extends AnchorPane {
 					protected Void call() throws Exception {
 						updateMessage("Life = "+getLife());
 						if (getLife() > 0) {
-						System.out.println(mole.getLifeTime());
-						for (long i=mole.getLifeTime()/2; i>=0; i=i-1000) {
+					//	System.out.println(mole.getLifeTime());
+						for (long i=mole.getLifeTime(); i>=0; i--) {
 							try {
 							updateProgress(i,mole.getLifeTime());
-							Thread.sleep(1000);
+							Thread.sleep(1);
 							new Thread(this).start();
 							if (i == 0) {
 								setLife(getLife()-1);
 								updateMessage("Life = "+getLife());
-								i = mole.getLifeTime()/2;
+								i = mole.getLifeTime();
 								}
 							} catch (InterruptedException e) {
 								if (isCancelled()) {
@@ -109,7 +110,7 @@ public class BossController extends AnchorPane {
 		case 4: mole = new BossMole(getClass().getResourceAsStream("Boss4.png"));break;
 		case 5: mole = new BossMole(getClass().getResourceAsStream("Boss5.png"));break;
 		case 6: mole = new BossMole(getClass().getResourceAsStream("ToxicMole.png"));break;
-		case 7: mole = new ToxicMole(getClass().getResourceAsStream("ToxicMole.png"));break;
+		case 7: mole = new BossMole(getClass().getResourceAsStream("ToxicMole.png"));break;
 		case 8: mole = new BossMole(getClass().getResourceAsStream("ToxicMole.png"));break;
 		case 9: mole = new BossMole(getClass().getResourceAsStream("ToxicMole.png"));break;
 		case 10: mole = new BossMole(getClass().getResourceAsStream("ToxicMole.png"));break;

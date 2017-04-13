@@ -29,7 +29,7 @@ public class Main extends Application {
 		stage.setScene(scene);
 		bc.getBossDeadProperty().addListener(e-> {
 			if (bc.getMole().isDead()) {
-			setNormalGame(bc.getLife(),bc.getScore(),bc.getWave());
+			setNormalGame(bc.getLife(),bc.getScore(),bc.getWave()+1);
 			}
 		});
 	}
@@ -41,13 +41,14 @@ public class Main extends Application {
 		gc.getMolePerWaveProperty().addListener(new InvalidationListener() {
 			@Override
 			public void invalidated(Observable observable) {
-				if (gc.getWave() % 10 == 0) {
-					setBossGame(gc.getLife(),gc.getScore(),gc.getWave()+1);
-				}
-				else if(gc.getMolePerWave() == 0) {
+				if(gc.getMolePerWave() == 0 && gc.getWave() % 10 != 0) {
 					gc.setWave(gc.getWave()+1);
 					gc.setMolePerWave(MoleUtils.moleAtWave(gc.getWave()));
-				}	
+				} else
+				if ((gc.getWave()) % 10 == 0) {
+					setBossGame(gc.getLife(),gc.getScore(),gc.getWave());
+				}
+				
 			}
 		});
 		gc.getLifeProperty().addListener(new InvalidationListener() {
