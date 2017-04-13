@@ -1,15 +1,13 @@
 package com.JavaProj;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -20,7 +18,9 @@ public class Menu extends AnchorPane {
 	@FXML Button highScore;
 	@FXML Button exit;
 	
-	public Menu() {
+	IntegerProperty menuClicked = new SimpleIntegerProperty(this, "menuChosen", 0);
+	
+	public Menu() { 
 		
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
 	    fxmlLoader.setRoot(this);
@@ -32,8 +32,8 @@ public class Menu extends AnchorPane {
 	    }
 	    
 	    start.setOnAction(e -> {
-	    	System.out.println("Nicky haha");
-	    	
+	    	//gc.setWave(1);
+	    	menuClicked.set(1);
 	    });
 	    
 	    highScore.setOnAction(e -> {
@@ -42,9 +42,12 @@ public class Menu extends AnchorPane {
 	    });
 	    
 	    exit.setOnAction(e -> {
-	    	System.out.println("Nicky hoho");
-	    	
+	    	menuClicked.set(2);
 	    });
+	}
+	
+	public IntegerProperty getMenuClickedProperty() {
+		return menuClicked;
 	}
 	
 }

@@ -99,19 +99,21 @@ public class HardcoreController extends VBox {
 	
 	public void randomizeMole() {
 		
-		int choose = MoleUtils.moleDiversity(wave);
+		for (int i=1; i<=MoleUtils.maxMoleSpawn(this.wave); i++) {
+		int choose = MoleUtils.moleDiversity(this.wave);
 		
 		//System.out.println(choose);
 		try {
 		switch(choose) {
-		case 1: mole = new BasicMole(getClass().getResourceAsStream("BasicMole.png")); break;
-		case 2: mole = new TankMole(getClass().getResourceAsStream("TankMole.png")); break;
-		case 3: mole = new HealerMole(getClass().getResourceAsStream("HealerMole.png"));break;
-		case 4: mole = new ToxicMole(getClass().getResourceAsStream("ToxicMole.png"));break;
+			case 1: mole[i] = new BasicMole(getClass().getResourceAsStream("BasicMole.png")); break;
+			case 2: mole[i] = new TankMole(getClass().getResourceAsStream("TankMole.png")); break;
+			case 3: mole[i] = new HealerMole(getClass().getResourceAsStream("HealerMole.png"));break;
+			case 4: mole[i] = new ToxicMole(getClass().getResourceAsStream("ToxicMole.png"));break;
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("Not found : " + mole.isError());
+			System.out.println("Not found : " + mole[i].isError());
 			//e.printStackTrace(); // jangan lupa diapus yaaa :)
+			}
 		}
 	}
 	

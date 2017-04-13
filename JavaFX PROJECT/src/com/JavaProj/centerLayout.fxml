@@ -15,19 +15,24 @@
    <children>
       <AnchorPane prefHeight="0.0" prefWidth="600.0">
          <children>
-            <Label fx:id="lifeLabel" layoutX="14.0" prefHeight="44.0" prefWidth="177.0" text="Life = " textFill="WHITE">
+            <Label fx:id="lifeLabel" layoutX="14.0" prefHeight="44.0" prefWidth="92.0" text="Life = " textFill="WHITE">
                <font>
                   <Font name="Open Sans Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="scoreLabel" layoutX="421.0" layoutY="2.0" prefHeight="38.0" prefWidth="205.0" text="Score =" textFill="WHITE" AnchorPane.bottomAnchor="4.0">
+            <Label fx:id="scoreLabel" layoutX="262.0" layoutY="2.0" prefHeight="36.0" prefWidth="165.0" text="Score =" textFill="WHITE" AnchorPane.bottomAnchor="6.0">
                <font>
                   <Font name="Open Sans Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="moleLabel" layoutX="202.0" prefHeight="44.0" prefWidth="205.0" text="Mole = " textFill="WHITE">
+            <Label fx:id="moleLabel" layoutX="126.0" layoutY="-1.0" prefHeight="44.0" prefWidth="136.0" text="Mole = " textFill="WHITE">
                <font>
                   <Font name="Open Sans Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="waveLabel" layoutX="423.0" layoutY="7.0" prefHeight="30.0" prefWidth="95.0" text="Wave 0" textFill="WHITE">
+               <font>
+                  <Font name="Open Sans Semibold" size="17.0" />
                </font>
             </Label>
          </children>
@@ -172,10 +177,5 @@
             </VBox>
          </children>
       </GridPane>
-      <Label fx:id="waveLabel" prefHeight="33.0" prefWidth="105.0" text="Wave 0" textFill="WHITE">
-         <font>
-            <Font name="Open Sans Semibold" size="17.0" />
-         </font>
-      </Label>
    </children>
 </fx:root>
