@@ -29,5 +29,6 @@ public class GameOver extends AnchorPane{
 		    } catch (IOException exception) {
 		        throw new RuntimeException(exception);
 		    }
+		    if (GameController.aThread != null) {GameController.aThread.interrupt();}
 		}
 }

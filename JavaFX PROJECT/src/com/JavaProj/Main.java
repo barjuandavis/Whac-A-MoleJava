@@ -32,6 +32,10 @@ public class Main extends Application {
 			setNormalGame(bc.getLife(),bc.getScore(),bc.getWave()+1);
 			}
 		});
+		bc.getLifeProperty().addListener(e -> {
+			if (bc.getLife() == 0)
+			setGameOver(bc.getWave(), bc.getScore());
+		});
 	}
 	
 	 void setNormalGame(int life, long score, int wave) {
@@ -76,7 +80,8 @@ public class Main extends Application {
 		scene = new Scene(menu, 640, 480);
 		menu.getMenuClickedProperty().addListener(e-> {
 			if (menu.getMenuClickedProperty().get() == 1) {
-				setNewNormalGame();
+				//setNewNormalGame();
+				setBossGame(3,0,10);
 			} else if(menu.getMenuClickedProperty().get() == 2) {
 					//System.out.println("Trying to close");
 					System.exit(0);
