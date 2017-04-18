@@ -25,19 +25,19 @@
          <children>
             <AnchorPane prefHeight="0.0" prefWidth="600.0">
          <children>
-            <Label fx:id="lifeLabel" layoutX="14.0" layoutY="1.0" text="Life = ">
+            <Label fx:id="lifeLabel" layoutX="14.0" layoutY="1.0" text="Life = " textFill="WHITE">
                <font>
-                  <Font name="Open Sans Bold" size="28.0" />
+                  <Font name="Coffee At Midnight Demo" size="28.0" />
                </font>
             </Label>
-            <Label fx:id="scoreLabel" layoutX="202.0" prefHeight="42.0" prefWidth="250.0" text="Score =" AnchorPane.bottomAnchor="5.0">
+            <Label fx:id="scoreLabel" layoutX="142.0" prefHeight="42.0" prefWidth="344.0" text="Score =" textFill="WHITE" AnchorPane.bottomAnchor="5.0">
                <font>
-                  <Font name="Open Sans Bold" size="28.0" />
+                  <Font name="Coffee At Midnight Demo" size="28.0" />
                </font>
             </Label>
-                  <Label fx:id="waveLabel" layoutX="390.0" prefHeight="42.0" prefWidth="250.0" text="Wave ">
+                  <Label fx:id="waveLabel" layoutX="390.0" prefHeight="42.0" prefWidth="250.0" text="Wave " textFill="WHITE">
                      <font>
-                        <Font name="Open Sans Bold" size="28.0" />
+                        <Font name="Coffee At Midnight Demo" size="28.0" />
                      </font>
                   </Label>
          </children></AnchorPane>
@@ -75,9 +75,9 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <Label fx:id="tutorialLabel" prefHeight="42.0" prefWidth="582.0" text="Use LMB/RMB to attack the boss!">
+            <Label fx:id="tutorialLabel" prefHeight="42.0" prefWidth="582.0" text="Use LMB/RMB to attack the boss!" textFill="WHITE">
                <font>
-                  <Font name="Open Sans Bold" size="13.0" />
+                  <Font name="Coffee At Midnight Demo" size="19.0" />
                </font>
             </Label>
          </children>

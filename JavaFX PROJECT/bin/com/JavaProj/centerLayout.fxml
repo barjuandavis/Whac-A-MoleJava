@@ -30,15 +30,15 @@
                <children>
                   <Label fx:id="lifeLabel" prefHeight="44.0" prefWidth="92.0" text="Life = " textFill="WHITE">
                      <font>
-                        <Font name="Open Sans Bold" size="20.0" />
+                        <Font name="Coffee At Midnight Demo" size="22.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="30.0" right="10.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="scoreLabel" prefHeight="44.0" prefWidth="165.0" text="Score =" textFill="WHITE">
+                  <Label fx:id="scoreLabel" prefHeight="44.0" prefWidth="195.0" text="Score =" textFill="WHITE">
                      <font>
-                        <Font name="Open Sans Bold" size="20.0" />
+                        <Font name="Coffee At Midnight Demo" size="22.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="10.0" right="40.0" />
@@ -46,7 +46,7 @@
                   </Label>
                   <Label fx:id="moleLabel" prefHeight="44.0" prefWidth="136.0" text="Mole = " textFill="WHITE">
                      <font>
-                        <Font name="Open Sans Bold" size="20.0" />
+                        <Font name="Coffee At Midnight Demo" size="22.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
@@ -54,7 +54,7 @@
                   </Label>
                   <Label fx:id="waveLabel" prefHeight="44.0" prefWidth="95.0" text="Wave 0" textFill="WHITE">
                      <font>
-                        <Font name="Open Sans Semibold" size="17.0" />
+                        <Font name="Coffee At Midnight Demo" size="22.0" />
                      </font>
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
