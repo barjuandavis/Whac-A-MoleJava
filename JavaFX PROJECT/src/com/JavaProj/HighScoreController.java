@@ -1,7 +1,6 @@
 package com.JavaProj;
 
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -68,7 +67,7 @@ public class HighScoreController {
 	public void writeFile () {
 		try {
 			PrintWriter writer = new PrintWriter ("bin/com/JavaProj/score.txt", "UTF-8");
-			writer.println(this.topWave+" , "+this.topScore);
+			writer.println(this.topWave+","+this.topScore);
 			writer.close();
 		}
 		catch(IOException e) {

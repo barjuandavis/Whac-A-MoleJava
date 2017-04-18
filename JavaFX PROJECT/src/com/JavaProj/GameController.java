@@ -263,9 +263,9 @@ public class GameController extends VBox  {
 			while(targetHole == tar) targetHole = MoleUtils.randomizeHole();
 			randomizeMole();
 			setMoleInHole(targetHole);
-			}
 		}
 	}
+}
 
 	
 }
