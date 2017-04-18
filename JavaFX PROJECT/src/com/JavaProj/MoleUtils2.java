@@ -2,17 +2,16 @@ package com.JavaProj;
 
 import java.util.Random;
 
-//import javafx.event.Event;
-
-public class MoleUtils {
+// Hardcore Mode
+public class MoleUtils2 {
 	public static int normal = 0;
 	public static int tanker = 0;
 	public static int healer = 0;
 	public static int toxic = 0;
 	public static int boss = 0;
 	
-	public static int moleLT = 3000;
-	public static int bossLT = 30000;
+	public static int moleLT = 2000;
+	public static int bossLT = 20000;
 	
 	public static int randomizeHole() {
 		return (int) (1+Math.random()*9);
@@ -20,88 +19,79 @@ public class MoleUtils {
 	
 	public static int moleAtWave(int wave)
 	{
-		//System.out.println("Wave " + wave);
+		System.out.println("Wave " + wave);
+		
 		if(wave%10 == 0)
 		{
 			normal = 1;
-			bossLT = 30000;
+			bossLT = 20000;
 			return 1;
 		}
 		
 		int n = wave/10;
-		int nMole = wave+(5*n)+3;
-		moleLT = 3000- (wave*20);
+		int nMole = wave+(5*n)+10;
+		moleLT = 2000- (wave*15);
 		
 		switch (n)
 		{
 			case 0 :
 				healer = 0;
-				tanker = 0;
 				toxic = 0;
-				normal = nMole - healer - tanker - toxic;
+				tanker = nMole - healer - toxic;
 				break;
 				
 			case 1 :
 				healer = 0;
-				tanker = 0;
-				toxic = nMole/10*3;
-				normal = nMole - healer - tanker - toxic;
+				toxic = nMole/10*1;
+				tanker = nMole - healer - toxic;
 				break;
 				
 			case 2 :
 				healer = 0;
-				tanker = 0;
-				toxic = nMole/10*4;
-				normal = nMole - healer - tanker - toxic;
+				toxic = nMole/10*2;
+				tanker = nMole - healer - toxic;
 				break;
 				
 			case 3 :
-				healer = nMole/10*2;
-				tanker = 0;
+				healer = nMole/10*1;
 				toxic = nMole/10*2;
-				normal = nMole - healer - tanker - toxic;
+				tanker = nMole - healer - toxic;
 				break;
 				
 			case 4 :
 				healer = 0;
-				tanker = nMole/10*3;
 				toxic = nMole/10*1;
-				normal = nMole - healer - tanker - toxic;
+				tanker = nMole - healer - toxic;
 				break;
 				
 			case 5 :
 				healer = nMole/10*2;
-				tanker = nMole/10*2;
 				toxic = nMole/10*2;
-				normal = nMole - healer - tanker - toxic;
+				tanker = nMole - healer - toxic;
 				break;
 				
 			case 6 :
-				healer = nMole/10*2;
-				tanker = nMole/10*3;
+				healer = nMole/10*1;
 				toxic = nMole/10*3;
-				normal = nMole - healer - tanker - toxic;
+				tanker = nMole - healer - toxic;
 				break;
 				
 			case 7 :
-				healer = nMole/10*1;
-				tanker = nMole/10*3;
-				toxic = nMole/10*3;
-				normal = nMole - healer - tanker - toxic;
+				healer = 0;
+				toxic = nMole/10*2;
+				normal = nMole - healer - toxic;
 				break;
 				
 			case 8 :
 				healer = nMole/10*1;
-				tanker = nMole/10*6;
-				toxic = nMole/10*3;
-				normal = nMole - healer - tanker - toxic;
+				toxic = nMole/10*5;
+				normal = nMole - healer - toxic;
 				break;
 				
 			case 9 :
 				healer = 0;
-				tanker = nMole/10*6;
-				toxic = nMole/10*4;
-				normal = nMole - healer - tanker - toxic;
+				toxic = nMole/10*6;
+				normal = nMole - healer - toxic;
 				break;
 		}
 		return nMole;
@@ -121,23 +111,13 @@ public class MoleUtils {
 			int div;
 			while (true)
 			{
-			div = 1 + rand.nextInt(4);
+			div = 2 + rand.nextInt(4);
 			
-			if(div==1)
-			{
-				if(normal > 0)
-				{
-					--normal;
-					System.out.println(normal);
-					return (int) 1;
-				}
-			}
-			else if(div == 2)
+			if(div == 2)
 			{
 				if(tanker > 0)
 				{
 					--tanker;
-					System.out.println(tanker);
 					return (int) 2;
 				}
 			}
@@ -146,7 +126,6 @@ public class MoleUtils {
 				if(healer > 0)
 				{
 					--healer;
-					System.out.println(healer);
 					return (int) 3;
 				}
 			}
@@ -155,7 +134,6 @@ public class MoleUtils {
 				if(toxic > 0)
 				{
 					--toxic;
-					System.out.println(toxic);
 					return (int) 4;
 				}
 			}
@@ -163,7 +141,5 @@ public class MoleUtils {
 		}
 	}
 	
-	public static long getLifeTime(int wave) {
-		return (moleLT-wave*15);
-	}
 }
+

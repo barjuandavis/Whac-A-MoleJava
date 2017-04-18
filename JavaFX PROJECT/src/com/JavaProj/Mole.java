@@ -24,7 +24,7 @@ public class Mole extends Image {
     
     public int getLife() {return this.life;}
     public void setLife(int life) {this.life = life;}
-    public long getLifeTime() {return this.life;}
+    public long getLifeTime() {return this.lifeTime;}
     public void setLifeTime(long life) {this.lifeTime = life;}
     public boolean isDead(){return (life == 0);}
     public long getBounty() {return this.bounty;}
