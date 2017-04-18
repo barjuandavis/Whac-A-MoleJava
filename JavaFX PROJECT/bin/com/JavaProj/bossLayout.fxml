@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@BG.jpg" />
+         </image>
+      </ImageView>
+      <VBox prefHeight="480.0" prefWidth="640.0">
+         <children>
+            <AnchorPane prefHeight="0.0" prefWidth="600.0">
+         <children>
+            <Label fx:id="lifeLabel" layoutX="14.0" layoutY="1.0" text="Life = ">
+               <font>
+                  <Font name="Open Sans Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label fx:id="scoreLabel" layoutX="202.0" prefHeight="42.0" prefWidth="250.0" text="Score =" AnchorPane.bottomAnchor="5.0">
+               <font>
+                  <Font name="Open Sans Bold" size="28.0" />
+               </font>
+            </Label>
+                  <Label fx:id="waveLabel" layoutX="390.0" prefHeight="42.0" prefWidth="250.0" text="Wave ">
+                     <font>
+                        <Font name="Open Sans Bold" size="28.0" />
+                     </font>
+                  </Label>
+         </children></AnchorPane>
+            <StackPane prefHeight="20.0" prefWidth="640.0">
+               <children>
+                  <ProgressBar id="timeBar" fx:id="timeBar" prefHeight="30.0" prefWidth="620.0" progress="0.0" />
+                  <Label style="-fx-background-color: none;" text="TIME">
+                     <font>
+                        <Font name="Coffee At Midnight Demo" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="31.0" prefWidth="640.0">
+               <children>
+                  <ProgressBar id="healthBar" fx:id="healthBar" prefHeight="30.0" prefWidth="620.0" progress="0.0" />
+                  <Label style="-fx-background-color: none;" text="HP">
+                     <font>
+                        <Font name="Coffee At Midnight Demo" size="22.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <AnchorPane>
+               <children>
+                  <ImageView id="bossTarget" fx:id="targetBoss" fitHeight="305.0" fitWidth="344.0" layoutX="148.0" onMouseClicked="#handle" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Boss1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="target" fitHeight="140.0" fitWidth="256.0" layoutX="179.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Grass.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <Label fx:id="tutorialLabel" prefHeight="42.0" prefWidth="582.0" text="Use LMB/RMB to attack the boss!">
+               <font>
+                  <Font name="Open Sans Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+   </children>
+</fx:root>
