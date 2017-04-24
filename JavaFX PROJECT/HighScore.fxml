@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <ImageView fitHeight="480.0" fitWidth="640.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@MoleAsset/Mole_BG.jpg" />
+         </image>
+      </ImageView>
+      <VBox prefHeight="480.0" prefWidth="640.0">
+         <children>
+            <Label alignment="TOP_CENTER" contentDisplay="TOP" prefHeight="98.0" prefWidth="640.0" text="High Score" textAlignment="CENTER">
+               <font>
+                  <Font name="Coffee At Midnight Demo" size="35.0" />
+               </font>
+            </Label>
+            <ListView prefHeight="425.0" prefWidth="640.0" style="-fx-background-color: none;" />
+            <Button id="back" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: none;" text="Back" textAlignment="CENTER">
+               <font>
+                  <Font name="Coffee At Midnight Demo" size="19.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="300.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
