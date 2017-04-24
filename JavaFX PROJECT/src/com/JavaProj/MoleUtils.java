@@ -128,6 +128,7 @@ public class MoleUtils {
 				if(normal > 0)
 				{
 					--normal;
+					System.out.println(normal);
 					return (int) 1;
 				}
 			}
@@ -136,6 +137,7 @@ public class MoleUtils {
 				if(tanker > 0)
 				{
 					--tanker;
+					System.out.println(tanker);
 					return (int) 2;
 				}
 			}
@@ -144,6 +146,7 @@ public class MoleUtils {
 				if(healer > 0)
 				{
 					--healer;
+					System.out.println(healer);
 					return (int) 3;
 				}
 			}
@@ -152,6 +155,7 @@ public class MoleUtils {
 				if(toxic > 0)
 				{
 					--toxic;
+					System.out.println(toxic);
 					return (int) 4;
 				}
 			}

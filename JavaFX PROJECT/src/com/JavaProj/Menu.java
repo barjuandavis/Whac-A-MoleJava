@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
@@ -15,10 +16,13 @@ public class Menu extends AnchorPane {
 	
 	@FXML ImageView cloud;
 	@FXML Button start;
-	@FXML Button highScore;
+	@FXML Label highScore;
+	@FXML Label wave;
 	@FXML Button exit;
 	
 	IntegerProperty menuClicked = new SimpleIntegerProperty(this, "menuChosen", 0);
+	
+	HighScoreController hs = new HighScoreController();
 	
 	public Menu() { 
 		
@@ -36,11 +40,8 @@ public class Menu extends AnchorPane {
 	    	menuClicked.set(1);
 	    });
 	    
-	    highScore.setOnAction(e -> {
-	    	System.out.println("Nicky hehe");
-	    	
-	    });
-	    
+	    highScore.setText("Highscore : "+ hs.getTopScore());
+	    wave.setText("Wave : " + hs.getTopWave());
 	    exit.setOnAction(e -> {
 	    	menuClicked.set(2);
 	    });

@@ -44,6 +44,7 @@ public class BossController extends AnchorPane {
 	public BooleanProperty getBossDeadProperty() {return this.isBossDead;}
 	protected void setBossDead(boolean x) {this.isBossDead.set(x);}
 	public IntegerProperty getLifeProperty() {return this.life;}
+	public Service<Void> getWaitDelayService() {return waitDelay;}
 	
 	public BossController(int life, long score,int wave){
 		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("bossLayout.fxml"));
@@ -67,51 +68,46 @@ public class BossController extends AnchorPane {
 			protected Task<Void> createTask() {
 				return new Task<Void>() {
 					@Override
-					protected Void call() throws Exception {
-						updateMessage("Life = "+getLife());
+					protected Void call()  {
+						
 						if (getLife() > 0) {
 					//	System.out.println(mole.getLifeTime());
-						for (long i=mole.getLifeTime()/8; i>=0; i--) {
+						for (long i=mole.getLifeTime(); i>=0; i--) {
 							try {
-							updateProgress(i,mole.getLifeTime()/8);
-							System.out.println(i);
+							updateMessage("Life = "+getLife());
+							updateProgress(i,mole.getLifeTime());
 							Thread.sleep(1);
 							new Thread(this).start();
 							if (i == 0) {
-								setLife(getLife()-1);
-								if (getLife() > 0) {
-									updateMessage("Life = "+getLife());
-									i=mole.getLifeTime()/8;
+								if (getLife() > 1) {setLife(getLife()-1);	
+								 i = mole.getLifeTime();
+								} else {
+									setLife(getLife()-1);
 									}
-								else break;
 								}
+								
 							} catch (InterruptedException e) {
 								if (isCancelled()) {
 								timeBar.progressProperty().unbind();
-								System.out.print("cencel");
-								break;
-								//return null;
+								return null;
 								}
 							}
 						  }
-						this.setOnSucceeded(e->{
-							System.out.println("yay");
-							this.runAndReset();
-						});
 						}
-						
-						
 						return null;	
 					}
-					
 				};
 			}
 		};
+		waitDelay.setOnSucceeded(e->{
+			setLife(getLife()-1);		
+			});
 		timeBar.progressProperty().bind(waitDelay.progressProperty());
 		lifeLabel.textProperty().bind(waitDelay.messageProperty());
 		waitDelay.restart();
 		//new Thread((Runnable) waitDelay).start();
-	}	
+	}
+	
 	
 	public void setBoss(int wave){
 		wave = wave/10;
@@ -121,11 +117,11 @@ public class BossController extends AnchorPane {
 		case 3: mole = new BossMole(getClass().getResourceAsStream("Boss3.png"));break;
 		case 4: mole = new BossMole(getClass().getResourceAsStream("Boss4.png"));break;
 		case 5: mole = new BossMole(getClass().getResourceAsStream("Boss5.png"));break;
-		case 6: mole = new BossMole(getClass().getResourceAsStream("ToxicMole.png"));break;
-		case 7: mole = new BossMole(getClass().getResourceAsStream("ToxicMole.png"));break;
-		case 8: mole = new BossMole(getClass().getResourceAsStream("ToxicMole.png"));break;
-		case 9: mole = new BossMole(getClass().getResourceAsStream("ToxicMole.png"));break;
-		case 10: mole = new BossMole(getClass().getResourceAsStream("ToxicMole.png"));break;
+		case 6: mole = new BossMole(getClass().getResourceAsStream("Boss6.png"));break;
+		case 7: mole = new BossMole(getClass().getResourceAsStream("Boss7.png"));break;
+		case 8: mole = new BossMole(getClass().getResourceAsStream("Boss8.png"));break;
+		case 9: mole = new BossMole(getClass().getResourceAsStream("Boss9.png"));break;
+		case 10: mole = new BossMole(getClass().getResourceAsStream("Boss10.png"));break;
 		}
 		targetBoss.setImage(mole);
 		healthBar.setProgress(mole.getFullLife());
@@ -138,6 +134,25 @@ public class BossController extends AnchorPane {
 		score += mole.getBounty();
 		setBossDead(true);
 		}
+	}
+	
+	
+	
+	public void setMoleInHole() {
+		targetBoss.setImage(mole);
+		targetBoss.setVisible(true);
+		healthBar.setProgress(mole.getFullLife());
+		if (mole.getLife()>1)
+			healthBar.setVisible(true);
+	//	activeHole = true;
+	}
+		
+	public void clearHole() {
+
+		targetBoss.setImage(null);
+		targetBoss.setVisible(false);
+		//activeHole = false;
+		healthBar.setVisible(false);		
 	}
 	
 	public void handle(MouseEvent e) {

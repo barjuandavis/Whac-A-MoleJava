@@ -13,6 +13,8 @@ public class Main extends Application {
 	 BossController bc;
 	 GameOver go;
 	 Menu menu;
+	 NewGame game;
+	 WinScreen ws;
 	static Stage stage;
 	
 	void setNewNormalGame() {
@@ -28,13 +30,17 @@ public class Main extends Application {
 		scene = new Scene(bc,640,480);
 		stage.setScene(scene);
 		bc.getBossDeadProperty().addListener(e-> {
+			if (bc.getWave()==100) {
+				setWinScreen(bc.getScore());
+			} else
 			if (bc.getMole().isDead()) {
 			setNormalGame(bc.getLife(),bc.getScore(),bc.getWave()+1);
 			}
 		});
-		bc.getLifeProperty().addListener(e -> {
-			if (bc.getLife() == 0)
-			setGameOver(bc.getWave(), bc.getScore());
+		bc.getWaitDelayService().setOnSucceeded(e->{
+			if (bc.getLife() == 0) {
+				setGameOver(bc.getWave(),bc.getScore());
+			}
 		});
 	}
 	
@@ -52,7 +58,6 @@ public class Main extends Application {
 				if ((gc.getWave()) % 10 == 0) {
 					setBossGame(gc.getLife(),gc.getScore(),gc.getWave());
 				}
-				
 			}
 		});
 		gc.getLifeProperty().addListener(new InvalidationListener() {
@@ -64,6 +69,7 @@ public class Main extends Application {
 
 			}
 		});
+		
 	}
 	
 	 void setGameOver(int wave, long score) {
@@ -74,16 +80,39 @@ public class Main extends Application {
 			setMainMenu();
 		});
 	}
+	 
+	void setWinScreen (long score) {
+		ws = new WinScreen (score);
+		scene = new Scene (ws,640,480);
+		stage.setScene(scene);
+		ws.getBackToMenuProperty().addListener(e->{
+			setMainMenu();
+		});
+	}
+	 
+	 void setDifficulty() {
+		game = new NewGame();
+		scene = new Scene(game,640,480);
+		stage.setScene(scene);
+		game.getNewGameClickedProperty().addListener(e-> {
+			if (game.getNewGameClickedProperty().get() == 1) {
+				setNewNormalGame();
+			} else if (game.getNewGameClickedProperty().get() == 2) {
+				//start hardcore;
+			} else if (game.getNewGameClickedProperty().get() == 3) {
+				setMainMenu();
+			}
+		});
+	}
 	
-	 void setMainMenu() {
+	void setMainMenu() {
 		menu = new Menu();
 		scene = new Scene(menu, 640, 480);
 		menu.getMenuClickedProperty().addListener(e-> {
 			if (menu.getMenuClickedProperty().get() == 1) {
-				//setNewNormalGame();
-				setBossGame(3,0,10);
+				setDifficulty();				
 			} else if(menu.getMenuClickedProperty().get() == 2) {
-					//System.out.println("Trying to close");
+					
 					System.exit(0);
 			}
 		});

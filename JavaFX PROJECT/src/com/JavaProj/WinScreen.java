@@ -9,8 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-public class GameOver extends AnchorPane{
-	@FXML private Label lastWave;
+public class WinScreen extends AnchorPane{
 	@FXML private Label lastScore;
 	
 	HighScoreController hs = new HighScoreController();
@@ -21,18 +20,18 @@ public class GameOver extends AnchorPane{
 	public void backToMenuSignal() {
 		backToMenuProperty.set(true);
 	}
-	public GameOver(int wave, long score) {
-		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameOverLayout.fxml"));
+	
+	public WinScreen (long score) {
+		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("WinScreen.fxml"));
 		    fxmlLoader.setRoot(this);
 		    fxmlLoader.setController(this);
 		    try {
 		        fxmlLoader.load();
-		        lastWave.setText("Last Wave : " + wave);
 		        lastScore.setText("Score : " + score);
 		    } catch (IOException exception) {
 		        throw new RuntimeException(exception);
 		    }
 		    
-		    hs.setTopScore(wave, score);
+		    hs.setTopScore(100, score);
 		}
 }

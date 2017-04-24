@@ -21,6 +21,10 @@ public class Mole extends Image {
     	setFullLife(life);
     }
     
+    public void specialCase () {
+    	setMoleID(1);
+    }
+    
     
     public int getLife() {return this.life;}
     public void setLife(int life) {this.life = life;}
