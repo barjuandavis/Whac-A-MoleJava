@@ -30,6 +30,7 @@ public class BossController extends AnchorPane {
 	private BooleanProperty isBossDead = new SimpleBooleanProperty(this,"isBossDead",false);
 	private Mole mole;
 	private int wave;
+	private int diff;
 	private Service<Void> waitDelay;
 //private Thread aThread;
 //	private boolean activeHole = false;
@@ -37,15 +38,18 @@ public class BossController extends AnchorPane {
 	public long getScore() {return this.score;}
 	public void setScore(long x) {this.score = x;}
 	public int getWave() {return this.wave;}
-	public void setWave(int wave) {this.wave = wave;waveLabel.setText("Wave " + getWave());}
+	public void setWave(int wave) {this.wave = wave;}
 	public Mole getMole() {return mole;}
 	public void setLife(int life){this.life.set(life);}
 	public int getLife() {return this.life.get();}
 	public BooleanProperty getBossDeadProperty() {return this.isBossDead;}
 	protected void setBossDead(boolean x) {this.isBossDead.set(x);}
 	public IntegerProperty getLifeProperty() {return this.life;}
+	public int getDiff() {return this.diff;}
+	public void setDiff(int diff) {this.diff = diff;}
 	
-	public BossController(int life, long score,int wave){
+	
+	public BossController(int life, long score,int wave,int diff){
 		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("bossLayout.fxml"));
 		    fxmlLoader.setRoot(this);
 		    fxmlLoader.setController(this);
@@ -60,8 +64,11 @@ public class BossController extends AnchorPane {
 		setWave(wave);
 		setScore(score);
 		setLife(life);
+		setDiff(diff);
 		lifeLabel.setText("Life = "+ getLife());
 		scoreLabel.setText("Score = " + getScore());
+		if (diff==1) waveLabel.setText("Wave " + getWave());
+		else waveLabel.setText("Wave " + (getWave()-50));
 		waitDelay = new Service<Void>() {
 			@Override
 			protected Task<Void> createTask() {
@@ -104,16 +111,16 @@ public class BossController extends AnchorPane {
 	public void setBoss(int wave){
 		wave = wave/10;
 		switch(wave) {
-		case 1: mole = new BossMole(getClass().getResourceAsStream("Boss1.png")); break;
-		case 2: mole = new BossMole(getClass().getResourceAsStream("Boss2.png")); break;
-		case 3: mole = new BossMole(getClass().getResourceAsStream("Boss3.png"));break;
-		case 4: mole = new BossMole(getClass().getResourceAsStream("Boss4.png"));break;
-		case 5: mole = new BossMole(getClass().getResourceAsStream("Boss5.png"));break;
-		case 6: mole = new BossMole(getClass().getResourceAsStream("Boss6.png"));break;
-		case 7: mole = new BossMole(getClass().getResourceAsStream("Boss7.png"));break;
-		case 8: mole = new BossMole(getClass().getResourceAsStream("Boss8.png"));break;
-		case 9: mole = new BossMole(getClass().getResourceAsStream("Boss9.png"));break;
-		case 10: mole = new BossMole(getClass().getResourceAsStream("Boss10.png"));break;
+		case 1: mole = new BossMole(getClass().getResourceAsStream("Boss1.png"), wave*10); break;
+		case 2: mole = new BossMole(getClass().getResourceAsStream("Boss2.png"), wave*10); break;
+		case 3: mole = new BossMole(getClass().getResourceAsStream("Boss3.png"), wave*10);break;
+		case 4: mole = new BossMole(getClass().getResourceAsStream("Boss4.png"), wave*10);break;
+		case 5: mole = new BossMole(getClass().getResourceAsStream("Boss5.png"), wave*10);break;
+		case 6: mole = new BossMole(getClass().getResourceAsStream("Boss6.png"), wave*10);break;
+		case 7: mole = new BossMole(getClass().getResourceAsStream("Boss7.png"), wave*10);break;
+		case 8: mole = new BossMole(getClass().getResourceAsStream("Boss8.png"), wave*10);break;
+		case 9: mole = new BossMole(getClass().getResourceAsStream("Boss9.png"), wave*10);break;
+		case 10: mole = new BossMole(getClass().getResourceAsStream("Boss10.png"), wave*10);break;
 		}
 		targetBoss.setImage(mole);
 		healthBar.setProgress(mole.getFullLife());

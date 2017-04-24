@@ -21,18 +21,24 @@ public class GameOver extends AnchorPane{
 	public void backToMenuSignal() {
 		backToMenuProperty.set(true);
 	}
-	public GameOver(int wave, long score) {
+	public GameOver(int wave, long score, int diff) {
 		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("GameOverLayout.fxml"));
 		    fxmlLoader.setRoot(this);
 		    fxmlLoader.setController(this);
 		    try {
 		        fxmlLoader.load();
-		        lastWave.setText("Last Wave : " + wave);
-		        lastScore.setText("Score : " + score);
+		        if (diff==1)
+		        {
+		        	lastWave.setText("Last Wave : " + wave);
+			        lastScore.setText("Score : " + score);
+		        } else {
+		        	lastWave.setText("Last Wave : " + (wave-50));
+			        lastScore.setText("Score : " + score);
+		        }
 		    } catch (IOException exception) {
 		        throw new RuntimeException(exception);
 		    }
 		    
-		    hs.setTopScore(wave, score);
+		    hs.setTopScore(wave, score, diff);
 		}
 }

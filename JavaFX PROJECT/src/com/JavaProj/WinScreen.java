@@ -21,7 +21,7 @@ public class WinScreen extends AnchorPane{
 		backToMenuProperty.set(true);
 	}
 	
-	public WinScreen (long score) {
+	public WinScreen (long score, int diff) {
 		 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("WinScreen.fxml"));
 		    fxmlLoader.setRoot(this);
 		    fxmlLoader.setController(this);
@@ -32,6 +32,6 @@ public class WinScreen extends AnchorPane{
 		        throw new RuntimeException(exception);
 		    }
 		    
-		    hs.setTopScore(100, score);
+		    hs.setTopScore(100, score, diff);
 		}
 }

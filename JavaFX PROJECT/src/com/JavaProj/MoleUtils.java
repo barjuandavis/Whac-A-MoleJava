@@ -10,6 +10,7 @@ public class MoleUtils {
 	public static int healer = 0;
 	public static int toxic = 0;
 	public static int boss = 0;
+	static GameController gc;
 	
 	public static int moleLT = 3000;
 	public static int bossLT = 30000;
@@ -18,92 +19,148 @@ public class MoleUtils {
 		return (int) (1+Math.random()*9);
 	}
 	
-	public static int moleAtWave(int wave)
+	public static int moleAtWave(int wave, int diff)
 	{
 		//System.out.println("Wave " + wave);
-		if(wave%10 == 0)
+		
+		int nMole; 
+		
+		if (diff==1)
 		{
-			normal = 1;
-			bossLT = 30000;
-			return 1;
+			if(wave%10 == 0)
+			{
+				normal = 1;
+				bossLT = 30000-(wave*20);
+				return 1;
+			}
+			
+			int n = wave/10;
+			nMole = wave+(5*n)+3;
+			moleLT = 3000- (wave*20);
+			
+			switch (n)
+			{
+				case 0 :
+					healer = 0;
+					tanker = 0;
+					toxic = 0;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 1 :
+					healer = 0;
+					tanker = 0;
+					toxic = nMole/10*3;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 2 :
+					healer = 0;
+					tanker = 0;
+					toxic = nMole/10*4;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 3 :
+					healer = nMole/10*2;
+					tanker = 0;
+					toxic = nMole/10*2;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 4 :
+					healer = 0;
+					tanker = nMole/10*3;
+					toxic = nMole/10*1;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 5 :
+					healer = nMole/10*2;
+					tanker = nMole/10*2;
+					toxic = nMole/10*2;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 6 :
+					healer = nMole/10*2;
+					tanker = nMole/10*3;
+					toxic = nMole/10*3;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 7 :
+					healer = nMole/10*1;
+					tanker = nMole/10*3;
+					toxic = nMole/10*3;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 8 :
+					healer = nMole/10*1;
+					tanker = nMole/10*6;
+					toxic = nMole/10*3;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 9 :
+					healer = 0;
+					tanker = nMole/10*6;
+					toxic = nMole/10*4;
+					normal = nMole - healer - tanker - toxic;
+					break;
+			}
+		} else {
+			if(wave%10 == 0)
+			{
+				normal = 1;
+				bossLT = 25000-(wave*20);
+				return 1;
+			}
+			
+			int n = wave/10;
+			nMole = wave+(5*n)+5;
+			moleLT = 3000- (wave*30);
+			
+			switch (n)
+			{
+				case 5 :
+					healer = 0;
+					tanker = nMole/10*4;
+					toxic = nMole/10*3;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 6 :
+					healer = 0;
+					tanker = nMole/10*4;
+					toxic = nMole/10*4;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 7 :
+					healer = 0;
+					tanker = nMole/10*5;
+					toxic = nMole/10*4;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 8 :
+					healer = 0;
+					tanker = nMole/10*6;
+					toxic = nMole/10*4;
+					normal = nMole - healer - tanker - toxic;
+					break;
+					
+				case 9 :
+					healer = 0;
+					tanker = nMole/10*6;
+					toxic = nMole/10*6;
+					normal = nMole - healer - tanker - toxic;
+					break;
+			}
 		}
 		
-		int n = wave/10;
-		int nMole = wave+(5*n)+3;
-		moleLT = 3000- (wave*20);
-		
-		switch (n)
-		{
-			case 0 :
-				healer = 0;
-				tanker = 0;
-				toxic = 0;
-				normal = nMole - healer - tanker - toxic;
-				break;
-				
-			case 1 :
-				healer = 0;
-				tanker = 0;
-				toxic = nMole/10*3;
-				normal = nMole - healer - tanker - toxic;
-				break;
-				
-			case 2 :
-				healer = 0;
-				tanker = 0;
-				toxic = nMole/10*4;
-				normal = nMole - healer - tanker - toxic;
-				break;
-				
-			case 3 :
-				healer = nMole/10*2;
-				tanker = 0;
-				toxic = nMole/10*2;
-				normal = nMole - healer - tanker - toxic;
-				break;
-				
-			case 4 :
-				healer = 0;
-				tanker = nMole/10*3;
-				toxic = nMole/10*1;
-				normal = nMole - healer - tanker - toxic;
-				break;
-				
-			case 5 :
-				healer = nMole/10*2;
-				tanker = nMole/10*2;
-				toxic = nMole/10*2;
-				normal = nMole - healer - tanker - toxic;
-				break;
-				
-			case 6 :
-				healer = nMole/10*2;
-				tanker = nMole/10*3;
-				toxic = nMole/10*3;
-				normal = nMole - healer - tanker - toxic;
-				break;
-				
-			case 7 :
-				healer = nMole/10*1;
-				tanker = nMole/10*3;
-				toxic = nMole/10*3;
-				normal = nMole - healer - tanker - toxic;
-				break;
-				
-			case 8 :
-				healer = nMole/10*1;
-				tanker = nMole/10*6;
-				toxic = nMole/10*3;
-				normal = nMole - healer - tanker - toxic;
-				break;
-				
-			case 9 :
-				healer = 0;
-				tanker = nMole/10*6;
-				toxic = nMole/10*4;
-				normal = nMole - healer - tanker - toxic;
-				break;
-		}
 		return nMole;
 	}
 	
@@ -165,5 +222,9 @@ public class MoleUtils {
 	
 	public static long getLifeTime(int wave) {
 		return (moleLT-wave*15);
+	}
+	
+	public static long getBossLifeTime(int wave) {
+		return (bossLT-wave*15);
 	}
 }

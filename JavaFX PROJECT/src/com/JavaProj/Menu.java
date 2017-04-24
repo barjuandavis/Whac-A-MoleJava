@@ -16,8 +16,10 @@ public class Menu extends AnchorPane {
 	
 	@FXML ImageView cloud;
 	@FXML Button start;
-	@FXML Label highScore;
-	@FXML Label wave;
+	@FXML Label casualScore;
+	@FXML Label hardScore;
+	@FXML Label casualWave;
+	@FXML Label hardWave;
 	@FXML Button exit;
 	
 	IntegerProperty menuClicked = new SimpleIntegerProperty(this, "menuChosen", 0);
@@ -36,12 +38,13 @@ public class Menu extends AnchorPane {
 	    }
 	    
 	    start.setOnAction(e -> {
-	    	//gc.setWave(1);
 	    	menuClicked.set(1);
 	    });
 	    
-	    highScore.setText("Highscore : "+ hs.getTopScore());
-	    wave.setText("Wave : " + hs.getTopWave());
+	    casualScore.setText("Highscore : "+ hs.getTopCasualScore());
+	    casualWave.setText("Wave : " + hs.getTopCasualWave());
+	    hardScore.setText("Highscore : "+ hs.getTopHardScore());
+	    hardWave.setText("Wave : " + hs.getTopHardWave());
 	    exit.setOnAction(e -> {
 	    	menuClicked.set(2);
 	    });

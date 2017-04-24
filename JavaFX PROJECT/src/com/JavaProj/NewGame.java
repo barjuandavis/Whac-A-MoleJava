@@ -30,7 +30,6 @@ public class NewGame extends AnchorPane {
 	    }
 	    
 	    casual.setOnAction(e -> {
-	    	//gc.setWave(1);
 	    	gameClicked.set(1);
 	    });
 	    
